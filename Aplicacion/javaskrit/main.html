@@ -13,7 +13,7 @@
         margin: 0;
       }
 
-      /* Ventana emergente */
+     
       .popup {
         display: none;
         width: 100%;
@@ -44,21 +44,21 @@
 
     <script>
       function openPopup(message) {
-        // Mostrar la ventana emergente
+        
         document.getElementById("popup-message").innerText = message;
         document.getElementById("popup").style.display = "flex";
       }
 
       function closePopup() {
-        // Ocultar la ventana emergente
+        
         document.getElementById("popup").style.display = "none";
       }
 
       function startClient() {
-        // Pedir al usuario la dirección IP y el puerto
+        
         var host = prompt("Ingrese la dirección IP del servidor:");
 
-        // Manejar la entrada del puerto de manera segura
+        
         var port;
         while (true) {
           var portStr = prompt("Ingrese el puerto del servidor:");
@@ -77,12 +77,12 @@
         var clientSocket = new WebSocket(`ws://${host}:${port}`);
 
         clientSocket.addEventListener("open", function (event) {
-          // Mostrar la ventana emergente
+         
           openPopup(`Conectado al servidor en ${host}:${port}`);
 
-          // Enviar datos al servidor
+          
           while (true) {
-            // Obtener la entrada del usuario en formato hexadecimal
+            
             var hexData = prompt(
               'Ingrese datos hexadecimales (o "exit" para salir):'
             );
@@ -91,19 +91,19 @@
               break;
             }
 
-            // Enviar datos al servidor en formato hexadecimal
+            
             clientSocket.send(hexData);
           }
 
-          // Cerrar la conexión cuando el usuario decide salir
+          
           clientSocket.close();
 
-          // Ocultar la ventana emergente
+          
           closePopup();
         });
 
         clientSocket.addEventListener("error", function (event) {
-          // Mostrar la ventana emergente de error
+          
           openPopup(
             `Error: No se puede conectar al servidor en ${host}:${port}`
           );
